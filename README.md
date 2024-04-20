@@ -8,6 +8,4 @@
 - Eslint & Prettier
 - Zustand
 
-## 배포
-
 [배포 주소](https://totalsearch.vercel.app/)
