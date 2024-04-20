@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/yellowstar.png",
   },
+  openGraph: {
+    title: "OTAL SEARCH",
+    description: "중고 거래 사이트를 한번에 검색하는 토탈 서치",
+  },
 };
 
 export default function RootLayout({
