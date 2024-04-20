@@ -1,0 +1,149 @@
+.loadingWrap {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(105, 105, 105, 0.401);
+  z-index: 99;
+}
+
+.imgWrap {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.imgWrap img {
+  position: absolute;
+  transition: all 0.2s;
+}
+
+.jung {
+  top: 60px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+  animation: junAni 2.5s ease-in-out 0s infinite normal;
+}
+
+.carrot {
+  top: 30px;
+  left: -60px;
+  animation: carrotAni 2.5s ease-in-out 0s infinite normal;
+}
+
+.bun {
+  top: 0px;
+  left: 0px;
+  animation: bunAni 2.5s ease-in-out 0s infinite normal;
+}
+
+@keyframes junAni {
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+  15% {
+    width: 0px;
+    height: 0px;
+  }
+  30% {
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+  }
+  45% {
+    width: 0px;
+    height: 0px;
+  }
+  60% {
+    top: 40px;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+  }
+  75% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@keyframes carrotAni {
+  0% {
+    width: 60px;
+    height: 60px;
+  }
+  15% {
+    width: 0px;
+    height: 0px;
+  }
+  30% {
+    top: 60px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+  }
+  45% {
+    width: 0px;
+    height: 0px;
+  }
+  60% {
+    top: 0px;
+    left: 0px;
+    width: 60px;
+    height: 60px;
+  }
+  75% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@keyframes bunAni {
+  0% {
+    width: 60px;
+    height: 60px;
+  }
+  15% {
+    width: 0px;
+    height: 0px;
+  }
+  30% {
+    top: 30px;
+    left: -60px;
+    width: 60px;
+    height: 60px;
+  }
+  45% {
+    width: 0px;
+    height: 0px;
+  }
+  60% {
+    top: 60px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+  }
+  75% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+  }
+}

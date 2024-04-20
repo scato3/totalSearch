@@ -2,12 +2,23 @@ export interface IDataProps {
   name: string;
   price: string;
   tag: string;
-  time: number;
+  time: string;
   link: string;
-  location: string;
-  image: string;
+  region: string;
+  img: string;
 }
 
 export interface ISearchProps {
   onSearch: (searchValue: string) => void;
+}
+
+export interface ICardProps {
+  item: {
+    name: string;
+    link: string;
+    img: string;
+    region: string;
+    price: string;
+    time: string;
+  };
 }

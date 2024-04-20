@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Navbar from "./_component/Navbar";
 import Search from "./_component/Search";
 import { BunJang, Junggo } from "./_lib/Crawling";
@@ -9,6 +9,7 @@ import { IDataProps } from "./type/types";
 import { DateUtils } from "@/utils/dateUtils";
 import { formatPrice } from "@/utils/formatPrice";
 import Loading from "./_component/Loading";
+import Card from "./_component/Card";
 
 type IObjProps = IDataProps & { [key in string]: string | boolean | null | [] | number };
 
@@ -17,16 +18,21 @@ export default function MainLayout() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<IObjProps[]>([]);
-  const currentRef = useRef<HTMLDivElement>(null);
+  const [prevValue, setPrevValue] = useState<string>("");
 
-  const handleSearch = async (searchValue: string, pageNum = 1) => {
+  const handleSearch = async (searchValue: string) => {
     setLoading(true);
+
     try {
-      if (pageNum === 1) {
+      if (!searchValue) {
         setData([]);
+        setPage(1);
+        setLoading(false);
+        return;
       }
-      const bunjangData = await BunJang({ value: searchValue, num: pageNum - 1 });
-      const jungoData = await Junggo({ value: searchValue, num: pageNum });
+
+      const bunjangData = await BunJang({ value: searchValue, num: page - 1 });
+      const jungoData = await Junggo({ value: searchValue, num: page });
 
       const bunjangList = bunjangData.list.map((el: IObjProps) => ({
         name: el.name,
@@ -58,7 +64,7 @@ export default function MainLayout() {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); // 로딩 상태 해제
+      setTimeout(() => setLoading(false), 1500);
     }
   };
 
@@ -81,24 +87,38 @@ export default function MainLayout() {
 
   useEffect(() => {
     if (!loading) {
-      handleSearch(searchValue, page);
+      handleSearch(searchValue);
     }
-  }, [page, searchValue]);
+  }, [page]);
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    setPage(1);
+    setData([]);
+  }, [searchValue]);
 
   return (
-    <div className={styles.Container} ref={currentRef}>
+    <div className={styles.Container}>
       {loading && <Loading />}
       <Navbar />
-      <Search onSearch={(value) => setSearchValue(value)} />
-      {data.map((item, index) => (
-        <div key={index}>
-          <p>{item.name}</p>
-        </div>
-      ))}
+      <Search
+        onSearch={(value) => {
+          if (value !== prevValue) {
+            setSearchValue(value);
+            setPrevValue(value);
+            handleSearch(value);
+          } else {
+            setData([]);
+            setPage(1);
+            setPrevValue(value);
+            handleSearch(value);
+          }
+        }}
+      />
+      <div className={styles.CardContainer}>
+        {data.map((item, index) => (
+          <Card key={index} item={item} />
+        ))}
+      </div>
     </div>
   );
 }
