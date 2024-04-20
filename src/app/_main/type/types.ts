@@ -6,6 +6,7 @@ export interface IDataProps {
   link: string;
   region: string;
   img: string;
+  id: string;
 }
 
 export interface ISearchProps {
@@ -21,5 +22,6 @@ export interface ICardProps {
     price: string;
     time: string;
     tag: string;
+    id: string;
   };
 }

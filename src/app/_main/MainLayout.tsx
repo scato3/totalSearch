@@ -1,17 +1,20 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Navbar from "./_component/Navbar";
-import Search from "./_component/Search";
+import Navbar from "../_component/Navbar";
+import Search from "../_component/Search";
 import { BunJang, Junggo } from "./_lib/Crawling";
 import styles from "./main.module.css";
 import { IDataProps } from "./type/types";
 import { DateUtils } from "@/utils/dateUtils";
 import { formatPrice } from "@/utils/formatPrice";
-import Loading from "./_component/Loading";
-import Card from "./_component/Card";
+import Loading from "../_component/Loading";
+import Card from "../_component/Card";
 
-type IObjProps = IDataProps & { [key in string]: string | boolean | null | [] | number };
+type IObjProps = IDataProps & {
+  pid: string | number;
+  [key: string]: string | boolean | null | [] | number;
+};
 
 export default function MainLayout() {
   const [page, setPage] = useState<number>(1);
@@ -42,6 +45,7 @@ export default function MainLayout() {
         price: formatPrice(el.price),
         time: DateUtils(el.update_time),
         tag: "번개장터",
+        id: el.pid,
       }));
 
       const junggoList = junggoData.data.items.map((el: IObjProps) => ({
@@ -52,6 +56,7 @@ export default function MainLayout() {
         price: formatPrice(el.price),
         time: el.sortDate,
         tag: "중고나라",
+        id: el.seq,
       }));
 
       const newItems = [...bunjangList, ...junggoList];

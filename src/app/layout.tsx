@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import RQProvider from "../_component/RQProvider";
 
 export const metadata: Metadata = {
   title: "TOTAL SEARCH",
@@ -15,10 +14,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <RQProvider>
-          <div>{children}</div>
-        </RQProvider>
-        <div id="portal" />
+        <div>{children}</div>
       </body>
     </html>
   );
