@@ -1,7 +1,7 @@
 import bun from "../../../public/bun.svg";
 import carrot from "../../../public/carrot.svg";
 import jung from "../../../public/jung.svg";
-import styles from "./Loading.module.css";
+import styles from "./loading.module.css";
 import Image from "next/image";
 
 export default function Loading() {
