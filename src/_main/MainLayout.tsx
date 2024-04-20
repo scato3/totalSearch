@@ -31,8 +31,8 @@ export default function MainLayout() {
         return;
       }
 
-      const bunjangData = await BunJang({ value: searchValue, num: page - 1 });
-      const jungoData = await Junggo({ value: searchValue, num: page });
+      const bunjangData = await BunJang({ value: searchValue, num: 0 });
+      const junggoData = await Junggo({ value: searchValue, num: 0 });
 
       const bunjangList = bunjangData.list.map((el: IObjProps) => ({
         name: el.name,
@@ -41,18 +41,20 @@ export default function MainLayout() {
         region: el.location,
         price: formatPrice(el.price),
         time: DateUtils(el.update_time),
+        tag: "번개장터",
       }));
 
-      const jungoList = jungoData.data.items.map((el: IObjProps) => ({
+      const junggoList = junggoData.data.items.map((el: IObjProps) => ({
         name: el.title,
         link: `https://web.joongna.com/product/${el.seq}`,
         img: el.url,
         region: el.locationNames,
         price: formatPrice(el.price),
         time: el.sortDate,
+        tag: "중고나라",
       }));
 
-      const newItems = [...bunjangList, ...jungoList];
+      const newItems = [...bunjangList, ...junggoList];
       setData((prev) =>
         [...prev, ...newItems].sort((a, b) => {
           const dateA = new Date(a.time);
@@ -92,9 +94,11 @@ export default function MainLayout() {
   }, [page]);
 
   useEffect(() => {
-    setPage(1);
     setData([]);
+    setPage(1);
   }, [searchValue]);
+
+  console.log(data);
 
   return (
     <div className={styles.Container}>
@@ -114,7 +118,7 @@ export default function MainLayout() {
           }
         }}
       />
-      <div className={styles.CardContainer}>
+      <div className={styles.CardBox}>
         {data.map((item, index) => (
           <Card key={index} item={item} />
         ))}

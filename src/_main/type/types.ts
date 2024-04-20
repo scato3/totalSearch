@@ -20,5 +20,6 @@ export interface ICardProps {
     region: string;
     price: string;
     time: string;
+    tag: string;
   };
 }

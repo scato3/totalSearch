@@ -1,1 +1,50 @@
+.CardContainer {
+  cursor: pointer;
+  max-width: 240px;
+  height: 320px;
+  border: 1px solid rgb(238, 238, 238);
+  text-decoration: none;
+  color: inherit;
+}
 
+.Name {
+  margin-top: 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.subContetContainer {
+  padding: 0 10px 10px 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.region {
+  padding: 10px;
+  font-size: 15px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.tag {
+  padding: 10px;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .CardContainer {
+    max-width: 160px;
+  }
+
+  .Image {
+    width: 160px;
+  }
+}

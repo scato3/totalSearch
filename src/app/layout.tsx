@@ -3,7 +3,7 @@ import "./globals.css";
 import RQProvider from "../_component/RQProvider";
 
 export const metadata: Metadata = {
-  title: "중고 거래 통합 서치 사이트",
+  title: "TOTAL SEARCH",
   description: "totalSearch",
 };
 

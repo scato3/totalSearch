@@ -20,3 +20,23 @@ export const DateUtils = (timestamp: string | number | boolean | [] | null): str
   const formattedDate = dayjs(parsedTimestamp * 1000).format("YYYY-MM-DD HH:mm:ss");
   return formattedDate;
 };
+
+export const getTimeDifference = (targetTime: string) => {
+  const targetDate = new Date(targetTime);
+  const currentDate = new Date();
+
+  const timeDifference = Math.floor((currentDate.getTime() - targetDate.getTime()) / 1000); // 초 단위 차이 계산
+
+  if (timeDifference < 60) {
+    return "방금 전";
+  } else if (timeDifference < 3600) {
+    const minutes = Math.floor(timeDifference / 60);
+    return `${minutes}분 전`;
+  } else if (timeDifference < 86400) {
+    const hours = Math.floor(timeDifference / 3600);
+    return `${hours}시간 전`;
+  } else {
+    const days = Math.floor(timeDifference / 86400);
+    return `${days}일 전`;
+  }
+};
