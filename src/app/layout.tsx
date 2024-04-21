@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     icon: "/yellowstar.png",
   },
   openGraph: {
-    title: "OTAL SEARCH",
+    title: "TOTAL SEARCH",
     description: "중고 거래 사이트를 한번에 검색하는 토탈 서치",
   },
 };
