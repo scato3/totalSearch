@@ -26,7 +26,7 @@ export const Junggo = async ({ value, num }: { value: string; num: number }) => 
     maxPrice: 2000000000,
     minPrice: 0,
     productFilterType: "ALL",
-    quantity: 80,
+    quantity: 100,
     registPeriod: "ALL",
     saleYn: "SALE_N",
     searchWord: value as string,
