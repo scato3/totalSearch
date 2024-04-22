@@ -1,7 +1,7 @@
 interface CustomFetchOptions {
   apiUrl: string;
   method: "GET" | "POST";
-  body?: any; // POST 요청 시 요청 본문에 들어갈 데이터
+  body?: any;
 }
 
 export const Fetcher = async ({ apiUrl, method, body }: CustomFetchOptions) => {
