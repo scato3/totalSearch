@@ -61,11 +61,15 @@ export default function MainLayout() {
       }));
 
       setData((prevData) => {
-        const newData = [
-          ...prevData.filter((item) => !bunjangList.some((newItem: IObjProps) => newItem.id === item.id)),
-          ...bunjangList,
-          ...junggoList,
-        ];
+        const filteredBunjangList = bunjangList.filter(
+          (newItem: IObjProps) => !prevData.some((item) => item.id === newItem.id),
+        );
+        const filteredJunggoList = junggoList.filter(
+          (newItem: IObjProps) => !prevData.some((item) => item.id === newItem.id),
+        );
+
+        const newData = [...prevData, ...filteredBunjangList, ...filteredJunggoList];
+
         return newData.sort((a, b) => {
           const dateA = new Date(a.time);
           const dateB = new Date(b.time);
