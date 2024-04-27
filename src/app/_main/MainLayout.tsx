@@ -10,8 +10,9 @@ import { DateUtils } from "@/utils/dateUtils";
 import { formatPrice } from "@/utils/formatPrice";
 import Loading from "../_component/Loading";
 import Card from "../_component/Card";
+import PriceCard from "../_component/PriceCard";
 
-type IObjProps = IDataProps & {
+export type IObjProps = IDataProps & {
   pid: string | number;
   [key: string]: string | boolean | null | [] | number;
 };
@@ -34,8 +35,8 @@ export default function MainLayout() {
         return;
       }
 
-      const bunjangData = await BunJang({ value: searchValue, num: 0 });
-      const junggoData = await Junggo({ value: searchValue, num: 0 });
+      const bunjangData = await BunJang({ value: searchValue, num: page - 1 });
+      const junggoData = await Junggo({ value: searchValue, num: page - 1 });
 
       const bunjangList = bunjangData.list.map((el: IObjProps) => ({
         name: el.name,
@@ -59,15 +60,18 @@ export default function MainLayout() {
         id: el.seq,
       }));
 
-      const newItems = [...bunjangList, ...junggoList];
-      setData((prev) =>
-        [...prev, ...newItems].sort((a, b) => {
+      setData((prevData) => {
+        const newData = [
+          ...prevData.filter((item) => !bunjangList.some((newItem: IObjProps) => newItem.id === item.id)),
+          ...bunjangList,
+          ...junggoList,
+        ];
+        return newData.sort((a, b) => {
           const dateA = new Date(a.time);
           const dateB = new Date(b.time);
-
           return dateB.getTime() - dateA.getTime();
-        }),
-      );
+        });
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -123,6 +127,7 @@ export default function MainLayout() {
           }
         }}
       />
+      {searchValue && <PriceCard data={data} />}
       <div className={styles.CardBox}>
         {data.map((item, index) => (
           <Card key={index} item={item} />
