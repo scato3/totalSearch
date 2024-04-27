@@ -3,6 +3,13 @@
   display: flex;
   margin-top: 20px;
   justify-content: center;
-  gap: 20px;
   font-size: 20px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .Container {
+    gap: 10px;
+    font-size: 15px;
+  }
 }
