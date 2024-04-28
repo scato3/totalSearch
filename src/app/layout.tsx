@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from "next/script";
+import AdbyGoogle from "./_component/AdByGoogle";
 
 export const metadata: Metadata = {
   title: "TOTAL SEARCH",
@@ -20,8 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <Script src="https://cdn.swygbro.com/public/widget/swyg-widget.js" />
       <body>
         <div>{children}</div>
+        <AdbyGoogle />
       </body>
     </html>
   );
